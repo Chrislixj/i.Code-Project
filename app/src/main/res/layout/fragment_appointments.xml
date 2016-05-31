@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chrislxj.nhgpapp.FragmentAppointment">
+
+    <Button
+        android:id="@+id/current_appointments_btn"
+        android:text="@string/current_appointments"
+        android:layout_width="200dip"
+        android:layout_height="100dip"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/past_appointments_btn"
+        android:text="@string/past_appointments"
+        android:layout_width="200dip"
+        android:layout_height="100dip"
+        android:layout_above="@id/current_appointments_btn"
+        android:layout_alignLeft="@id/current_appointments_btn"/>
+
+    <Button
+        android:id="@+id/make_appointments_btn"
+        android:text="@string/make_appointments"
+        android:layout_width="200dip"
+        android:layout_height="100dip"
+        android:layout_below="@id/current_appointments_btn"
+        android:layout_alignLeft="@id/current_appointments_btn"/>
+
+</RelativeLayout>

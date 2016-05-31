@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/bar_1"
+        android:rotation="270"
+        android:progressDrawable="@drawable/pill_bar_blue"
+        android:layout_width="160dip"
+        android:layout_height="80dip"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:onClick="openPillActivity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="60dip"
+        android:layout_marginLeft="10dip"/>
+
+    <ProgressBar
+        android:id="@+id/bar_2"
+        android:rotation="270"
+        android:progressDrawable="@drawable/pill_bar_green"
+        android:layout_width="160dip"
+        android:layout_height="80dip"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:onClick="openPillActivity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="60dip"
+        android:layout_marginRight="10dip"/>
+
+    <ProgressBar
+        android:id="@+id/bar_3"
+        android:rotation="270"
+        android:progressDrawable="@drawable/pill_bar_yellow"
+        android:layout_width="160dip"
+        android:layout_height="80dip"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:onClick="openPillActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="60dip"
+        android:layout_marginLeft="10dip"/>
+    <ProgressBar
+        android:id="@+id/bar_4"
+        android:rotation="270"
+        android:progressDrawable="@drawable/pill_bar_purple"
+        android:layout_width="160dip"
+        android:layout_height="80dip"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:onClick="openPillActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="60dip"
+        android:layout_marginRight="10dip"/>
+</RelativeLayout>

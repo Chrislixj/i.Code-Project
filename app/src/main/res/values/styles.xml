@@ -1,0 +1,4 @@
+<resources>
+    <style name="Theme.Holo.Light.DarkActionBar"
+        parent="android:style/Theme.Holo.Light.DarkActionBar"/>
+</resources>

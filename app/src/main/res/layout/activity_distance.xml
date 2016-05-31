@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+    <LinearLayout
+        android:id="@+id/distance_timeframe_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.5">
+        <Button
+            android:text="@string/day"
+            android:textSize="18dip"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="40dip" />
+        <Button
+            android:text="@string/week"
+            android:textSize="18dip"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="40dip" />
+        <Button
+            android:text="@string/month"
+            android:textSize="18dip"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="40dip" />
+    </LinearLayout>
+
+    <!--Typical Average Distance-->
+    <TextView
+        android:id="@+id/typical_average_distance_label"
+        android:text="@string/typical_average_distance"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/typical_average_distance_tv"
+        android:text="XXXX"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <!--Your Average Distance-->
+    <TextView
+        android:id="@+id/your_average_distance_label"
+        android:text="@string/your_average_distance"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_above="@id/typical_average_distance_label"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/your_average_distance_tv"
+        android:text="XXXX"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_above="@id/typical_average_distance_label"
+        android:layout_alignParentRight="true"/>
+
+    <!--Target Distance-->
+    <TextView
+        android:id="@+id/target_distance_label"
+        android:text="@string/target_distance"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_above="@id/your_average_distance_label"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/target_distance_tv"
+        android:text="XXXX"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_above="@id/your_average_distance_label"
+        android:layout_alignParentRight="true"/>
+
+    <!--Current Distance-->
+    <TextView
+        android:id="@+id/current_distance_label"
+        android:text="@string/current_distance"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_above="@id/target_distance_label"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/current_distance_tv"
+        android:text="XXXX"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_above="@id/target_distance_label"
+        android:layout_alignParentRight="true"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/distance_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/current_distance_label"
+        android:layout_below="@id/distance_timeframe_layout"/>
+
+</RelativeLayout>
