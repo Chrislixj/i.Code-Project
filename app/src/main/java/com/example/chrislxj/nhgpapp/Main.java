@@ -2,7 +2,9 @@ package com.example.chrislxj.nhgpapp;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -104,17 +106,20 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         Intent intent = new Intent(view.getContext(), Distance.class);
         startActivity(intent);
     }
-    /*
+
     public void openBloodActivity (View view){
+        SharedPreferences pref = view.getContext().getSharedPreferences(getString(R.string.number_of_graphs_file_key), Context.MODE_PRIVATE);
+        int defaultNumberOfGraphs = 3;
+        int numberOfGraphs = pref.getInt(getString(R.string.number_of_graphs_file_key), defaultNumberOfGraphs);
         Intent intent = null;
-        if (mode == 1){
-            intent = new Intent(view.getContext(), BloodGlucose.class);
-        } else if (mode == 2){
+        if (numberOfGraphs == 5){
             intent = new Intent(view.getContext(), BloodPressure.class);
+        } else if (numberOfGraphs == 4){
+            intent = new Intent(view.getContext(), BloodGlucose.class);
         }
         startActivity(intent);
     }
-    */
+
     public void openPillActivity (View view) {
         String tag = "NHGPAPP_MEDICINE_TYPE";
         String medicineType = view.getTag().toString();

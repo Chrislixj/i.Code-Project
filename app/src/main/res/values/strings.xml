@@ -57,4 +57,7 @@
     <string name="title_activity_blood_pressure">Blood Pressure</string>
     <string name="title_activity_pill">Pill</string>
     <string name="title_activity_login">Login</string>
+
+    <string name="number_of_graphs_file_key">number_of_graphs_file_key</string>
+    <string name="number_of_pills_file_key">number_of_pills_file_key</string>
 </resources>
