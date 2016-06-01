@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class FragmentMedicine extends android.support.v4.app.Fragment {
 
@@ -48,18 +49,33 @@ public class FragmentMedicine extends android.support.v4.app.Fragment {
         if (numberOfPills >= 1) {
             ProgressBar bar1 = (ProgressBar) layout.findViewById(R.id.bar_1);
             bar1.setProgress(45);
+            bar1.setTag("XXX");
+            TextView tv1 = (TextView) layout.findViewById(R.id.bar_1_tv);
+            tv1.setText("Paracetemol");
         } if (numberOfPills >= 2) {
             ProgressBar bar2 = (ProgressBar) layout.findViewById(R.id.bar_2);
             bar2.setProgress(70);
+            bar2.setTag("XXX");
+            TextView tv2 = (TextView) layout.findViewById(R.id.bar_2_tv);
+            tv2.setText("Paracetemol");
         } if (numberOfPills >= 3) {
             ProgressBar bar3 = (ProgressBar) layout.findViewById(R.id.bar_3);
             bar3.setProgress(40);
+            bar3.setTag("XXX");
+            TextView tv3 = (TextView) layout.findViewById(R.id.bar_3_tv);
+            tv3.setText("Paracetemol");
         } if (numberOfPills >= 4) {
             ProgressBar bar4 = (ProgressBar) layout.findViewById(R.id.bar_4);
             bar4.setProgress(70);
+            bar4.setTag("XXX");
+            TextView tv4 = (TextView) layout.findViewById(R.id.bar_4_tv);
+            tv4.setText("Paracetemol");
         } if (numberOfPills >= 5) {
             ProgressBar bar5 = (ProgressBar) layout.findViewById(R.id.bar_5);
             bar5.setProgress(70);
+            bar5.setTag("XXX");
+            TextView tv5 = (TextView) layout.findViewById(R.id.bar_5_tv);
+            tv5.setText("Paracetemol");
         }
         return layout;
     }

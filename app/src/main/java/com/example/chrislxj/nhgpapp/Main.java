@@ -19,6 +19,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private ViewPager viewPager;
     private AdapterTabsPager tabsAdapter;
     private ActionBar actionBar;
+    public final static String medicineIdTag = "NHGPAPP_MEDICINE_TYPE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +108,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         startActivity(intent);
     }
 
-    public void openBloodActivity (View view){
+    public void openBloodActivity (View view) {
         SharedPreferences pref = view.getContext().getSharedPreferences(getString(R.string.number_of_graphs_file_key), Context.MODE_PRIVATE);
         int defaultNumberOfGraphs = 3;
         int numberOfGraphs = pref.getInt(getString(R.string.number_of_graphs_file_key), defaultNumberOfGraphs);
@@ -121,10 +122,9 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     }
 
     public void openPillActivity (View view) {
-        String tag = "NHGPAPP_MEDICINE_TYPE";
         String medicineType = view.getTag().toString();
         Intent intent = new Intent(view.getContext(), Pill.class);
-        intent.putExtra(tag, medicineType);
+        intent.putExtra(medicineIdTag, medicineType);
         startActivity(intent);
     }
 }

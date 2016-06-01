@@ -13,7 +13,11 @@
         android:max="100"
         android:onClick="openPillActivity"/>
     <TextView
-        android:text="HI"
+        android:id="@+id/bar_1_tv"
+        android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:textStyle="bold"
+        android:rotation="270"
+        android:gravity="center"
         android:layout_alignLeft="@id/bar_1"
         android:layout_alignTop="@id/bar_1"
         android:layout_alignRight="@id/bar_1"

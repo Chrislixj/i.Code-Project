@@ -1,6 +1,7 @@
 package com.example.chrislxj.nhgpapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,10 +10,14 @@ import android.view.MenuItem;
 
 public class Pill extends Activity {
 
+    //TODO: Access data to set Pill values
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pill);
+        Intent intent = getIntent();
+        String medicineId = intent.getStringExtra(Main.medicineIdTag);
+
     }
 
     @Override

@@ -50,7 +50,6 @@ public class FragmentFitness extends android.support.v4.app.Fragment {
                 layout = (LinearLayout) inflater.inflate(R.layout.fragment_fitness_five, container, false);
                 break;
         }
-        //-
 
         //Set up Graphs and TextViews
         TextView calories_tv = (TextView) layout.findViewById(R.id.calories_tv);

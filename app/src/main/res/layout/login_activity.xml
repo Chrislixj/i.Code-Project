@@ -14,8 +14,8 @@
         android:layout_height="50dip"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="80dip" />
-    <!--android:drawableLeft="@drawable/nric_input_drawable"-->
+        android:layout_marginTop="80dip"
+        android:drawableLeft="@drawable/nric_input_drawable"/>
 
     <EditText
         android:id="@+id/hp_input_textbox"
@@ -25,8 +25,8 @@
         android:layout_height="50dip"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/nric_input_textbox"
-        android:layout_marginTop="25dip" />
-    <!--android:drawableLeft="@drawable/hp_input_drawable"-->
+        android:layout_marginTop="25dip"
+        android:drawableLeft="@drawable/hp_input_drawable"/>
     <Button
         android:text="Login"
         android:textSize="30dip"
@@ -34,7 +34,8 @@
         android:layout_height="70dip"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dip"
-        android:layout_below="@id/hp_input_textbox"/>
+        android:layout_below="@id/hp_input_textbox"
+        android:onClick="signInToServer"/>
     <EditText
         android:text="184985"
         android:textSize="30dip"

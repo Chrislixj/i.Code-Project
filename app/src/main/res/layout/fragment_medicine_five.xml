@@ -63,4 +63,60 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="60dip" />
+
+    <TextView
+        android:id="@+id/bar_1_tv"
+        android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:rotation="270"
+        android:gravity="center"
+        android:layout_alignLeft="@id/bar_1"
+        android:layout_alignTop="@id/bar_1"
+        android:layout_alignRight="@id/bar_1"
+        android:layout_alignBottom="@id/bar_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/bar_2_tv"
+        android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:rotation="270"
+        android:gravity="center"
+        android:layout_alignLeft="@id/bar_2"
+        android:layout_alignTop="@id/bar_2"
+        android:layout_alignRight="@id/bar_2"
+        android:layout_alignBottom="@id/bar_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/bar_3_tv"
+        android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:rotation="270"
+        android:gravity="center"
+        android:layout_alignLeft="@id/bar_3"
+        android:layout_alignTop="@id/bar_3"
+        android:layout_alignRight="@id/bar_3"
+        android:layout_alignBottom="@id/bar_3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/bar_4_tv"
+        android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:rotation="270"
+        android:gravity="center"
+        android:layout_alignLeft="@id/bar_4"
+        android:layout_alignTop="@id/bar_4"
+        android:layout_alignRight="@id/bar_4"
+        android:layout_alignBottom="@id/bar_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/bar_5_tv"
+        android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:rotation="270"
+        android:gravity="center"
+        android:layout_alignLeft="@id/bar_5"
+        android:layout_alignTop="@id/bar_5"
+        android:layout_alignRight="@id/bar_5"
+        android:layout_alignBottom="@id/bar_5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

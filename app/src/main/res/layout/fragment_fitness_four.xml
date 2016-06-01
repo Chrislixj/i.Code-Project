@@ -18,7 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="XXXX"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_graph_text_size"/>
         <TextView
             android:id="@+id/blood_tv"
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="XXXX"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_graph_text_size"/>
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/blood_chart"
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/calories_label"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_plain_text_size"/>
         <TextView
             android:id="@+id/calories_tv"
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="XXXX"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_plain_text_size"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/steps_label"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_plain_text_size"/>
         <TextView
             android:id="@+id/steps_tv"
             android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="XXXX"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_plain_text_size"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/distance_label"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_plain_text_size"/>
         <TextView
             android:id="@+id/distance_tv"
             android:layout_width="wrap_content"
@@ -97,6 +97,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="XXXX"
-            android:textSize="40dip"/>
+            android:textSize="@dimen/fitness_fragment_plain_text_size"/>
     </RelativeLayout>
 </LinearLayout>
