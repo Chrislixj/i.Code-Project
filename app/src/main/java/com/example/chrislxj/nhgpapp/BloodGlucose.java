@@ -8,6 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.List;
+
+//TODO: Handle input of BloodGlucose values
+//TODO: Access data to set BloodGlucose graph
 
 public class BloodGlucose extends Activity {
 

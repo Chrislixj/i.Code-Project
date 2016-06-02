@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+//TODO: Handle input of BloodPressure values
+//TODO: Access data to set BloodPressure graph
 
 public class BloodPressure extends Activity {
 

@@ -13,6 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.util.Log;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
@@ -20,6 +25,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private AdapterTabsPager tabsAdapter;
     private ActionBar actionBar;
     public final static String medicineIdTag = "NHGPAPP_MEDICINE_TYPE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
