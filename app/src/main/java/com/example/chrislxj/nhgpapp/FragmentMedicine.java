@@ -23,14 +23,15 @@ public class FragmentMedicine extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //TODO: Extract medicine data to initialize Pills
-
         RelativeLayout layout = null;
         Context context = getActivity();
         SharedPreferences pref = context.getSharedPreferences(getString(R.string.number_of_pills_file_key), Context.MODE_PRIVATE);
         int defaultNumberOfPills = 3;
         int numberOfPills = pref.getInt(getString(R.string.number_of_pills_file_key), defaultNumberOfPills);
         switch (numberOfPills){
+            case 0:
+                layout = (RelativeLayout) inflater.inflate(R.layout.fragment_medicine_zero, container, false);
+                break;
             case 1:
                 layout = (RelativeLayout) inflater.inflate(R.layout.fragment_medicine_one, container, false);
                 break;
@@ -50,6 +51,9 @@ public class FragmentMedicine extends android.support.v4.app.Fragment {
         //Set up Pills and TextViews
         DatabaseHandler db = new DatabaseHandler(getContext());
         List<ObjectMedicine> medicineList = db.getAllMedicine();
+        if (medicineList.isEmpty()){
+            return layout;
+        }
 
         if (numberOfPills >= 1) {
             ProgressBar bar1 = (ProgressBar) layout.findViewById(R.id.bar_1);
@@ -82,6 +86,7 @@ public class FragmentMedicine extends android.support.v4.app.Fragment {
             TextView tv5 = (TextView) layout.findViewById(R.id.bar_5_tv);
             tv5.setText(medicineList.get(4).getName());
         }
+
         return layout;
     }
 

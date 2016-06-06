@@ -25,7 +25,7 @@ public class Calories extends Activity {
         TextView net_calories_tv = (TextView) findViewById(R.id.net_calories_tv);
         TextView target_calories_tv = (TextView) findViewById(R.id.target_calories_tv);
 
-        //TODO: access data to set Calories values
+        //TODO: Access data to set Calories values
         calories_expended_tv.setText("XXX");
         calories_consumed_tv.setText("XXX");
         net_calories_tv.setText("XXX");

@@ -7,8 +7,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 
 //TODO: Figure out adding limit lines
-//TODO: Figure out changing timeframe for graphs
 //TODO: Configure graph styles
+//TODO: Configure update graphs
 
 public class AdapterGraphs{
 

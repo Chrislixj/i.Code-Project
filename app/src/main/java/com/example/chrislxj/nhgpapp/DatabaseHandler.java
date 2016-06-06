@@ -1,6 +1,7 @@
 package com.example.chrislxj.nhgpapp;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.github.mikephil.charting.data.Entry;
 
 //TODO:Change appointments id to time?
 
@@ -27,9 +31,9 @@ Primary Key = Time
 /*
 - Medicine Format
 Primary Key = Id
---------------------------------
-|ID  |NAME |INSTR |QUANT |TIME |
---------------------------------
+----------------------------------------
+|ID  |NAME |INSTR |QUANT |TIME |PROGRESS|
+---------------------------------------
 |int |text |text  |int   |text |
 --------------------------------
 |xxx |xxx  |xxx   |xxx   |xxx  |
@@ -380,5 +384,81 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public List getGraphingData(String timeframe, String table) {
+        Calendar cal = Calendar.getInstance();
+        int var1 = 0;
+        int var2 = 0;
+        int var3 = 0;
+        int var4 = 0;
+        switch (timeframe){
+            case "day":
+                var1=Calendar.HOUR_OF_DAY;
+                var2=Calendar.DATE;
+                var3=Calendar.DATE;
+                var4=Calendar.DATE;
+                break;
+            case "week":
+                var1=Calendar.DAY_OF_WEEK;
+                var2=Calendar.HOUR_OF_DAY;
+                var3=0;
+                var4=24;
+                break;
+            case "month":
+                var1=Calendar.DAY_OF_MONTH;
+                var2=Calendar.HOUR_OF_DAY;
+                var3=0;
+                var4=24;
+                break;
+        }
+        int i = 0;
+        int j = 0;
+        int portionCount = 0;
+        int totalCount = 0;
+        Date dayMin = null;
+        Date dayMax = null;
+        ArrayList<Entry> data = new ArrayList<>();
+        List<ObjectFitness> databaseOutput = this.getAllFitness(table);
+        cal.set(var1, j);
+        cal.set(var2, var3);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        dayMin = cal.getTime();
+        cal.set(var1, j);
+        cal.set(var2, var4);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.MILLISECOND, 1000);
+        dayMax = cal.getTime();
+        for (i = 0; i < databaseOutput.size(); i++) {
+            Date dateObject = databaseOutput.get(i).getDatetimeTime();
+
+            if (dateObject.before(dayMax) && dateObject.after(dayMin) || dateObject.equals(dayMin)) {
+                portionCount += databaseOutput.get(i).getValue();
+                totalCount += databaseOutput.get(i).getValue();
+            } else if (dateObject.after(dayMax) || dateObject.equals(dayMax)) {
+                Entry datapoint = new Entry(portionCount, j);
+                data.add(datapoint);
+                portionCount = 0;
+                j++;
+                cal.set(var1, j);
+                cal.set(var2, var3);
+                cal.set(Calendar.MINUTE, 0);
+                cal.set(Calendar.MILLISECOND, 0);
+                dayMin = cal.getTime();
+                cal.set(var1, j);
+                cal.set(var2, var4);
+                cal.set(Calendar.MINUTE, 59);
+                cal.set(Calendar.MILLISECOND, 1000);
+                dayMax = cal.getTime();
+            } else {
+                Log.e("debug", "Database not ordered");
+            }
+        }
+        List returnList = new ArrayList<>();
+        returnList.add(data);
+        returnList.add(totalCount);
+        returnList.add(totalCount/cal.getActualMaximum(var1));
+        return returnList;
     }
 }
