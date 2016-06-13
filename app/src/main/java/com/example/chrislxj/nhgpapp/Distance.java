@@ -12,6 +12,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Distance extends Activity {
@@ -25,17 +26,18 @@ public class Distance extends Activity {
         TextView target_distance_tv = (TextView) findViewById(R.id.target_distance_tv);
         TextView current_distance_tv = (TextView) findViewById(R.id.current_distance_tv);
 
-        //TODO: Access data to set Distance values
-        typical_average_distance_tv.setText("XXX");
-        your_average_distance_tv.setText("XXX");
-        target_distance_tv.setText("XXX");
-        current_distance_tv.setText("XXX");
+        DatabaseHandler db = new DatabaseHandler(this);
+        List databaseOutput = db.getGraphingData("week", "DISTANCE");
 
-        //TODO: Access data to set Distance graph
+        //TODO: Access data to set Target Distance
+        typical_average_distance_tv.setText("3.2 km");
+        your_average_distance_tv.setText(databaseOutput.get(2).toString());
+        target_distance_tv.setText("XXX");
+        current_distance_tv.setText(databaseOutput.get(1).toString());
+
         LineChart distance_chart = (LineChart) findViewById(R.id.distance_chart);
-        ArrayList<Entry> distanceData = new ArrayList<>();
-        distanceData.add(new Entry(0, 0));
-        AdapterGraphs.initializeGraph(distance_chart, 2, "Distance", distanceData);
+        ArrayList<Entry> distanceData = (ArrayList<Entry>) databaseOutput.get(0);
+        AdapterGraphs.initializeGraph(distance_chart, 1, "Distance", distanceData);
     }
 
     public void setTimeframeDay (View view){

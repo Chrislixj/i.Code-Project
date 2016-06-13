@@ -16,5 +16,16 @@
         android:id="@+id/action_add"
         android:title="@string/action_add"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/add_blood_glucose"
+                android:title="@string/add_blood_glucose" />
+            <item android:id="@+id/add_blood_pressure"
+                android:title="@string/add_blood_pressure" />
+            <item android:id="@+id/add_food_exercise"
+                android:title="@string/add_food_exercise" />
+        </menu>
+    </item>
+
 </menu>

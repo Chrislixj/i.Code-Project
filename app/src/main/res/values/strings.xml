@@ -61,4 +61,10 @@
 
     <string name="number_of_graphs_file_key">number_of_graphs_file_key</string>
     <string name="number_of_pills_file_key">number_of_pills_file_key</string>
+    <string name="no_medicine_text">You currently do not have any medicines</string>
+
+    <string name="add_blood_glucose">Add Blood Glucose</string>
+    <string name="add_blood_pressure">Add Blood Pressure</string>
+    <string name="add_food_exercise">Add Food and Exercise</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>

@@ -7,6 +7,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 
 //TODO: Figure out adding limit lines
+//TODO: Figure out changing timeframes
 //TODO: Configure graph styles
 //TODO: Configure update graphs
 

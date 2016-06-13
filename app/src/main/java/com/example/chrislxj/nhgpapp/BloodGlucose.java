@@ -7,26 +7,64 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-//TODO: Handle input of BloodGlucose values
-//TODO: Access data to set BloodGlucose graph
+//TODO: Force refresh of Glucose Graph
 
 public class BloodGlucose extends Activity {
-
+    private DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_glucose);
+
+        db = new DatabaseHandler(this);
+        List databaseOutput = db.getGraphingData("week", "GLUCOSE");
+        LineChart glucose_chart = (LineChart) findViewById(R.id.glucose_chart);
+        ArrayList<Entry> glucoseData = (ArrayList<Entry>) databaseOutput.get(0);
+        AdapterGraphs.initializeGraph(glucose_chart, 1, "Glucose", glucoseData);
+
+        TimePicker glucose_timepicker = (TimePicker) findViewById(R.id.glucose_timepicker);
+        glucose_timepicker.setIs24HourView(true);
     }
 
     public void inputValue (View view){
-        EditText time_input_textbox = (EditText) findViewById(R.id.time_input_textbox);
         EditText glucose_input_textbox = (EditText) findViewById(R.id.glucose_input_textbox);
-        String timeInput = time_input_textbox.getText().toString();
-        String glucoseInput = glucose_input_textbox.getText().toString();
+        TimePicker glucose_timepicker = (TimePicker) findViewById(R.id.glucose_timepicker);
+        ObjectFitness fitnessObject = new ObjectFitness();
+        int glucoseInput;
+        try {
+            glucoseInput = Integer.parseInt(glucose_input_textbox.getText().toString());
+        } catch (NumberFormatException e){
+            glucose_input_textbox.setText("Invalid!");
+            return;
+        }
+        Date newTime = new Date();
+        newTime.setHours(glucose_timepicker.getCurrentHour());
+        newTime.setMinutes(glucose_timepicker.getCurrentMinute());
+        fitnessObject.setTime(newTime);
+        fitnessObject.setValue(glucoseInput);
+        db.addFitness("GLUCOSE", fitnessObject);
+        glucose_input_textbox.setText("");
     }
+
+    public void setTimeframeDay (View view){
+
+    }
+    public void setTimeframeWeek (View view){
+
+    }
+    public void setTimeframeMonth (View view){
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

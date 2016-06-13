@@ -42,6 +42,7 @@
     <TextView
         android:id="@+id/bar_1_tv"
         android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:textStyle="bold"
         android:rotation="270"
         android:gravity="center"
         android:layout_alignLeft="@id/bar_1"
@@ -53,6 +54,7 @@
     <TextView
         android:id="@+id/bar_2_tv"
         android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:textStyle="bold"
         android:rotation="270"
         android:gravity="center"
         android:layout_alignLeft="@id/bar_2"
@@ -64,6 +66,7 @@
     <TextView
         android:id="@+id/bar_3_tv"
         android:textSize="@dimen/medicine_fragment_pill_text_size"
+        android:textStyle="bold"
         android:rotation="270"
         android:gravity="center"
         android:layout_alignLeft="@id/bar_3"

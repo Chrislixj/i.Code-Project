@@ -26,7 +26,7 @@ public class FragmentMedicine extends android.support.v4.app.Fragment {
         RelativeLayout layout = null;
         Context context = getActivity();
         SharedPreferences pref = context.getSharedPreferences(getString(R.string.number_of_pills_file_key), Context.MODE_PRIVATE);
-        int defaultNumberOfPills = 3;
+        int defaultNumberOfPills = 0;
         int numberOfPills = pref.getInt(getString(R.string.number_of_pills_file_key), defaultNumberOfPills);
         switch (numberOfPills){
             case 0:

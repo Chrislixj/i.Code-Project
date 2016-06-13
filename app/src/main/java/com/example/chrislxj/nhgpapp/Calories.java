@@ -19,6 +19,8 @@ public class Calories extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //TODO: Calculate calories stuff
         setContentView(R.layout.activity_calories);
         TextView calories_expended_tv = (TextView) findViewById(R.id.calories_expended_tv);
         TextView calories_consumed_tv = (TextView) findViewById(R.id.calories_consumed_tv);

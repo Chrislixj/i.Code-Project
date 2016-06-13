@@ -14,8 +14,6 @@ import android.util.Log;
 
 import com.github.mikephil.charting.data.Entry;
 
-//TODO:Change appointments id to time?
-
 /*
 - Fitness Format
 Primary Key = Time

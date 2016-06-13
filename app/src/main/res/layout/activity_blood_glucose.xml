@@ -14,88 +14,31 @@
             android:textSize="18dip"
             android:layout_weight="0.5"
             android:layout_width="0dp"
-            android:layout_height="40dip" />
+            android:layout_height="40dip"
+            android:onClick="setTimeframeDay"/>
         <Button
             android:text="@string/week"
             android:textSize="18dip"
             android:layout_weight="0.5"
             android:layout_width="0dp"
-            android:layout_height="40dip" />
+            android:layout_height="40dip"
+            android:onClick="setTimeframeWeek"/>
         <Button
             android:text="@string/month"
             android:textSize="18dip"
             android:layout_weight="0.5"
             android:layout_width="0dp"
-            android:layout_height="40dip" />
+            android:layout_height="40dip"
+            android:onClick="setTimeframeMonth"/>
     </LinearLayout>
-
-    <!--Minimum Limit-->
-    <TextView
-        android:id="@+id/minimum_glucose_label"
-        android:text="@string/minimum_glucose_label"
-        android:textSize="20dip"
-        android:layout_width="wrap_content"
-        android:layout_height="30dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
-    <TextView
-        android:id="@+id/minimum_glucose_tv"
-        android:text="@string/minimum_glucose_tv"
-        android:textSize="20dip"
-        android:layout_width="wrap_content"
-        android:layout_height="30dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
-
-    <!--Maximum Limit-->
-    <TextView
-        android:id="@+id/maximum_glucose_label"
-        android:text="@string/maximum_glucose_label"
-        android:textSize="20dip"
-        android:layout_width="wrap_content"
-        android:layout_height="30dip"
-        android:layout_above="@id/minimum_glucose_label"
-        android:layout_alignParentLeft="true"/>
-    <TextView
-        android:id="@+id/maximum_glucose_tv"
-        android:text="@string/maximum_glucose_tv"
-        android:textSize="20dip"
-        android:layout_width="wrap_content"
-        android:layout_height="30dip"
-        android:layout_above="@id/minimum_glucose_label"
-        android:layout_alignParentRight="true"/>
-
-    <!--Input Button-->
-    <Button
-        android:id="@+id/glucose_input_button"
-        android:text="@string/input_glucose_button"
-        android:layout_width="100dip"
-        android:layout_height="60dip"
-        android:layout_above="@id/maximum_glucose_label"
-        android:layout_alignParentRight="true"
-        android:onClick="inputValue"
-        />
     <TimePicker
-        android:id="@+id/timePicker1"
+        android:id="@+id/glucose_timepicker"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <!--Time Input-->
-    <TextView
-        android:id="@+id/time_input_label"
-        android:text="@string/time_input_label"
-        android:textSize="20dip"
-        android:layout_width="wrap_content"
-        android:layout_height="30dip"
-        android:layout_above="@id/maximum_glucose_label"
-        android:layout_alignParentLeft="true"/>
-    <EditText
-        android:id="@+id/time_input_textbox"
-        android:textSize="20dip"
-        android:layout_width="match_parent"
-        android:layout_height="30dip"
-        android:layout_above="@id/maximum_glucose_label"
-        android:layout_toRightOf="@id/time_input_label"
-        android:layout_toLeftOf="@id/glucose_input_button"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dip"
+        android:layout_marginBottom="-20dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 
     <!--Value Input-->
     <TextView
@@ -104,22 +47,72 @@
         android:textSize="20dip"
         android:layout_width="wrap_content"
         android:layout_height="30dip"
-        android:layout_above="@id/time_input_label"
+        android:layout_marginTop="20dip"
+        android:layout_alignTop="@id/glucose_timepicker"
         android:layout_alignParentLeft="true"/>
     <EditText
         android:id="@+id/glucose_input_textbox"
         android:textSize="20dip"
         android:layout_width="match_parent"
-        android:layout_height="30dip"
-        android:layout_above="@id/time_input_label"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/glucose_input_label"
         android:layout_toRightOf="@id/glucose_input_label"
-        android:layout_toLeftOf="@id/glucose_input_button"/>
+        android:layout_toLeftOf="@id/glucose_timepicker"/>
+
+    <!--Maximum Limit-->
+    <TextView
+        android:id="@+id/maximum_glucose_label"
+        android:text="@string/maximum_glucose_label"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_below="@id/glucose_input_label"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/maximum_glucose_tv"
+        android:text="@string/maximum_glucose_tv"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_below="@id/glucose_input_label"
+        android:layout_toLeftOf="@id/glucose_timepicker"/>
+
+    <!--Minimum Limit-->
+    <TextView
+        android:id="@+id/minimum_glucose_label"
+        android:text="@string/minimum_glucose_label"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_below="@id/maximum_glucose_label"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/minimum_glucose_tv"
+        android:text="@string/minimum_glucose_tv"
+        android:textSize="20dip"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_below="@id/maximum_glucose_label"
+        android:layout_toLeftOf="@id/glucose_timepicker"/>
+
+    <!--Input Button-->
+    <Button
+        android:id="@+id/glucose_input_button"
+        android:text="@string/input_glucose_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/minimum_glucose_label"
+        android:layout_toLeftOf="@id/glucose_timepicker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="inputValue"
+        />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/glucose_chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/glucose_input_button"
+        android:layout_above="@id/glucose_timepicker"
         android:layout_below="@id/glucose_timeframe_layout"/>
 
 </RelativeLayout>

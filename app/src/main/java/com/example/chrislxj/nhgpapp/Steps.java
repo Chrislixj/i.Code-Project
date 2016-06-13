@@ -26,13 +26,12 @@ public class Steps extends Activity {
         DatabaseHandler db = new DatabaseHandler(this);
         List databaseOutput = db.getGraphingData("week", "STEPS");
 
-        //TODO: Access data to set Steps values
-        typical_average_steps_tv.setText("XXX");
-        your_average_steps_tv.setText((Integer) databaseOutput.get(2));
+        //TODO: Access data to set Target Steps
+        typical_average_steps_tv.setText("5,117 steps");
+        your_average_steps_tv.setText(databaseOutput.get(2).toString());
         target_steps_tv.setText("XXX");
-        current_steps_tv.setText((Integer) databaseOutput.get(1));
+        current_steps_tv.setText(databaseOutput.get(1).toString());
 
-        //TODO: Access data to set Steps graph
         LineChart steps_chart = (LineChart) findViewById(R.id.steps_chart);
         ArrayList<Entry> stepsData = (ArrayList<Entry>) databaseOutput.get(0);
         AdapterGraphs.initializeGraph(steps_chart, 1, "Steps", stepsData);

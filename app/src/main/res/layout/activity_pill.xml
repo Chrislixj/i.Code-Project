@@ -8,42 +8,56 @@
 
     <ProgressBar
         android:id="@+id/pill_bar"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:rotation="270"
         android:progressDrawable="@drawable/pill_bar_blue"
-        android:layout_width="300dip"
-        android:layout_height="150dip"
-        android:layout_marginTop="80dip"
-        android:layout_marginBottom="80dip"
+        android:layout_width="200dip"
+        android:layout_height="100dip"
+        android:layout_marginTop="90dip"
+        android:layout_marginBottom="90dip"
+        android:layout_marginLeft="-25dip"
         android:indeterminateOnly="false"
         android:max="100" />
 
+    <TimePicker
+        android:id="@+id/alarm_timepicker"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
     <LinearLayout
+        android:id="@+id/medicine_details_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/pill_bar"
         android:weightSum="5"
         android:orientation="vertical">
         <TextView
-            android:text="Instructions"
+            android:id="@+id/pill_instructions_tv"
+            android:text="Instructions:"
             android:textSize="25dip"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"/>
         <TextView
-            android:text="Pills"
+            android:id="@+id/pills_left_tv"
+            android:text="Pills Left:"
             android:textSize="25dip"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
-        <TextView
-            android:text="Times"
-            android:textSize="25dip"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/medicine_timings_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@id/alarm_timepicker"
+        android:layout_below="@id/alarm_timepicker"
+        android:layout_above="@id/medicine_details_linearlayout"
+        android:orientation="horizontal">
     </LinearLayout>
 
 </RelativeLayout>

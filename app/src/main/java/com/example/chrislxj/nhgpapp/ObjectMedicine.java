@@ -1,5 +1,8 @@
 package com.example.chrislxj.nhgpapp;
 
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +14,7 @@ public class ObjectMedicine {
     String _name;
     String _instruction;
     int _quantity;
-    List<Date> _datetime_times;
+    List<Date> _datetime_times = new ArrayList();
     String _database_times;
 
     // Empty constructor
@@ -102,9 +105,17 @@ public class ObjectMedicine {
     public void setTimes(String times){
         this._database_times = times;
         String[] splitTimes = times.split(",");
+        Log.d("debug","splitTimes is: " +splitTimes.toString());
+        Log.d("debug","splitTimes length: "+splitTimes.length);
         for (int i=0; i<splitTimes.length; i++){
-            Date datetime = new Date(Integer.parseInt(splitTimes[i]));
+            Log.d("debug","Epoch Time: "+splitTimes[i]);
+            Date datetime = new Date(Long.parseLong(splitTimes[i]));
+            Log.d("debug","Date Time: "+datetime.toString());
+            if (this._datetime_times == null){
+                Log.d("debug","this._datetime_times is null");
+            }
             this._datetime_times.add(datetime);
+            Log.d("debug", "Number: "+String.valueOf(i));
         }
     }
     public void setTimes(List<Date> times){
