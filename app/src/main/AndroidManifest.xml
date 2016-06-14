@@ -55,6 +55,26 @@
             android:name=".Settings"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name=".AppointmentType"
+            android:label="@string/title_activity_appointment_type" >
+        </activity>
+        <activity
+            android:name=".AppointmentTime"
+            android:label="@string/title_activity_appointment_time" >
+        </activity>
+        <activity
+            android:name=".AppointmentDetails"
+            android:label="@string/title_activity_appointment_details" >
+        </activity>
+        <activity
+            android:name=".PastAppointments"
+            android:label="@string/title_activity_past_appointments" >
+        </activity>
+        <activity
+            android:name=".CurrentAppointments"
+            android:label="@string/title_activity_current_appointments" >
+        </activity>
     </application>
 
 </manifest>

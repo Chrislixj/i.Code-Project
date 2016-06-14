@@ -29,16 +29,16 @@ public class Pill extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pill);
-
         Intent intent = getIntent();
-        int medicineId = Integer.parseInt(intent.getStringExtra(Main.medicineIdTag));
+        int medicineId = Integer.parseInt(intent.getStringExtra(Main.medicineTypeTag));
         db = new DatabaseHandler(this);
         medicineObject = db.getMedicine(medicineId);
+        setTitle(medicineObject.getName());
         List <Date> medicineTimes = medicineObject.getDatetimeTimes();
         ProgressBar pill_bar = (ProgressBar) findViewById(R.id.pill_bar);
         TextView pill_instructions_tv = (TextView) findViewById(R.id.pill_instructions_tv);
         TextView pills_left_tv = (TextView) findViewById(R.id.pills_left_tv);
-        pill_bar.setProgress(medicineObject.getProgress());
+        pill_bar.setProgress(medicineObject.getQuantity()/medicineObject.getProgress()*100);
         pill_instructions_tv.setText("Instructions\n" + medicineObject.getInstruction());
         pills_left_tv.setText("Pills Left: " + medicineObject.getQuantity());
 

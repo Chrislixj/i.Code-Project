@@ -2,6 +2,7 @@ package com.example.chrislxj.nhgpapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,12 +27,10 @@ public class Steps extends Activity {
         DatabaseHandler db = new DatabaseHandler(this);
         List databaseOutput = db.getGraphingData("week", "STEPS");
 
-        //TODO: Access data to set Target Steps
         typical_average_steps_tv.setText("5,117 steps");
         your_average_steps_tv.setText(databaseOutput.get(2).toString());
-        target_steps_tv.setText("XXX");
+        target_steps_tv.setText(db.getAccount(DatabaseHandler.KEY_ACCOUNT_TARGET_STEPS)+" steps");
         current_steps_tv.setText(databaseOutput.get(1).toString());
-
         LineChart steps_chart = (LineChart) findViewById(R.id.steps_chart);
         ArrayList<Entry> stepsData = (ArrayList<Entry>) databaseOutput.get(0);
         AdapterGraphs.initializeGraph(steps_chart, 1, "Steps", stepsData);

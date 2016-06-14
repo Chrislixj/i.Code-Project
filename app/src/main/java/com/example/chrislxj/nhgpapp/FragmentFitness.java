@@ -85,9 +85,9 @@ public class FragmentFitness extends android.support.v4.app.Fragment {
             ArrayList<Entry> glucoseData = new ArrayList<>();
             glucoseData.add(new Entry(0, 0));
             AdapterGraphs.initializeGraph(glucose_chart, 2, "Glucose", glucoseData);
-            calories_tv.setText("XXX");
-            steps_tv.setText("XXX");
-            distance_tv.setText("XXX");
+            calories_tv.setText(String.valueOf(caloriesDatabaseOutput.get(1)));
+            steps_tv.setText(String.valueOf(stepsDatabaseOutput.get(1)));
+            distance_tv.setText(String.valueOf(distanceDatabaseOutput.get(1)));
             blood_tv.setText("XXX");
             blood_label.setText("Glucose");
         } else if (numberOfGraphs == 5){

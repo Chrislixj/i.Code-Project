@@ -26,7 +26,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private ViewPager viewPager;
     private AdapterTabsPager tabsAdapter;
     private ActionBar actionBar;
-    public final static String medicineIdTag = "NHGPAPP_MEDICINE_TYPE";
+    public final static String medicineTypeTag = "NHGPAPP_MEDICINE_TYPE";
     private SharedPreferences graphsPref;
     private SharedPreferences pillsPref;
 
@@ -40,6 +40,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         //-----REMOVE FOR DEPLOYMENT-----//
         DatabaseHandler db = new DatabaseHandler(this);
+        db.addAccount(0,"chrislixj@gmail.com","25 Jalan Legundi",98778369,"Christopher Li",90109860,"Pramath Krishna",0,0,0);
         ObjectMedicine medicineObject = new ObjectMedicine();
         medicineObject.setID(98778369);
         medicineObject.setName("Paracetemol");
@@ -164,7 +165,20 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     public void openPillActivity (View view) {
         String medicineType = view.getTag().toString();
         Intent intent = new Intent(view.getContext(), Pill.class);
-        intent.putExtra(medicineIdTag, medicineType);
+        intent.putExtra(medicineTypeTag, medicineType);
+        startActivity(intent);
+    }
+
+    public void openPastAppointmentsActivity (View view){
+        Intent intent = new Intent(view.getContext(), PastAppointments.class);
+        startActivity(intent);
+    }
+    public void openCurrentAppointmentsActivity (View view){
+        Intent intent = new Intent(view.getContext(), CurrentAppointments.class);
+        startActivity(intent);
+    }
+    public void openAppointmentTypeActivity (View view){
+        Intent intent = new Intent(view.getContext(), AppointmentType.class);
         startActivity(intent);
     }
 }

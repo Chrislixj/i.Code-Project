@@ -29,10 +29,9 @@ public class Distance extends Activity {
         DatabaseHandler db = new DatabaseHandler(this);
         List databaseOutput = db.getGraphingData("week", "DISTANCE");
 
-        //TODO: Access data to set Target Distance
         typical_average_distance_tv.setText("3.2 km");
         your_average_distance_tv.setText(databaseOutput.get(2).toString());
-        target_distance_tv.setText("XXX");
+        target_distance_tv.setText(db.getAccount(DatabaseHandler.KEY_ACCOUNT_TARGET_DISTANCE)+" km");
         current_distance_tv.setText(databaseOutput.get(1).toString());
 
         LineChart distance_chart = (LineChart) findViewById(R.id.distance_chart);

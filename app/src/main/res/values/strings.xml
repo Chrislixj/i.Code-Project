@@ -67,4 +67,11 @@
     <string name="add_blood_pressure">Add Blood Pressure</string>
     <string name="add_food_exercise">Add Food and Exercise</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_appointment_type">Appointment Type</string>
+    <string name="title_activity_appointment_time">Appointment Time</string>
+    <string name="title_activity_appointment_details">Appointment Details</string>
+    <string name="appointment_polyclinic_label">Polyclinic: </string>
+    <string name="appointment_service_label">Service: </string>
+    <string name="title_activity_past_appointments">Past Appointments</string>
+    <string name="title_activity_current_appointments">Current Appointments</string>
 </resources>

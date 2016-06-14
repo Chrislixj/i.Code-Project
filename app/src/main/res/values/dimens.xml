@@ -5,4 +5,5 @@
     <dimen name="medicine_fragment_pill_text_size">20dip</dimen>
     <dimen name="fitness_fragment_graph_text_size">30dip</dimen>
     <dimen name="fitness_fragment_plain_text_size">40dip</dimen>
+    <dimen name="appointment_button_margins">15dip</dimen>
 </resources>

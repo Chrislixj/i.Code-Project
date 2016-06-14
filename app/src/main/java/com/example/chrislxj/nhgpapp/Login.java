@@ -9,7 +9,7 @@ import android.view.View;
 
 
 public class Login extends Activity {
-
+    //TODO: Input change in target cals/steps/dist
     //TODO: Configure login
     //TODO: Solve png icon issue
 

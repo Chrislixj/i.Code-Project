@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 
 
 public class FragmentAppointment extends android.support.v4.app.Fragment {
-
+    //TODO:Sort out appointments
+    //TODO:Add png
     public FragmentAppointment() {
         // Required empty public constructor
     }

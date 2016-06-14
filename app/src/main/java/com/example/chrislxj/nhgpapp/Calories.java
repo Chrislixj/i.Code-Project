@@ -19,6 +19,7 @@ public class Calories extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DatabaseHandler db = new DatabaseHandler(this);
 
         //TODO: Calculate calories stuff
         setContentView(R.layout.activity_calories);
@@ -31,7 +32,7 @@ public class Calories extends Activity {
         calories_expended_tv.setText("XXX");
         calories_consumed_tv.setText("XXX");
         net_calories_tv.setText("XXX");
-        target_calories_tv.setText("XXX");
+        target_calories_tv.setText(db.getAccount(DatabaseHandler.KEY_ACCOUNT_TARGET_DISTANCE));
 
         //TODO: Access data to set Calories graph
         LineChart calories_chart = (LineChart) findViewById(R.id.calories_chart);

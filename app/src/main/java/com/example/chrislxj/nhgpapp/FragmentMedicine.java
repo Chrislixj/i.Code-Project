@@ -57,36 +57,35 @@ public class FragmentMedicine extends android.support.v4.app.Fragment {
 
         if (numberOfPills >= 1) {
             ProgressBar bar1 = (ProgressBar) layout.findViewById(R.id.bar_1);
-            bar1.setProgress(medicineList.get(0).getProgress());
+            bar1.setProgress((medicineList.get(0).getQuantity()/medicineList.get(0).getProgress()*100));
             bar1.setTag(medicineList.get(0).getID());
             TextView tv1 = (TextView) layout.findViewById(R.id.bar_1_tv);
             tv1.setText(medicineList.get(0).getName());
         } if (numberOfPills >= 2) {
             ProgressBar bar2 = (ProgressBar) layout.findViewById(R.id.bar_2);
-            bar2.setProgress(medicineList.get(1).getProgress());
+            bar2.setProgress((medicineList.get(1).getQuantity()/medicineList.get(1).getProgress()*100));
             bar2.setTag(medicineList.get(1).getID());
             TextView tv2 = (TextView) layout.findViewById(R.id.bar_2_tv);
             tv2.setText(medicineList.get(1).getName());
         } if (numberOfPills >= 3) {
             ProgressBar bar3 = (ProgressBar) layout.findViewById(R.id.bar_3);
-            bar3.setProgress(medicineList.get(2).getProgress());
+            bar3.setProgress((medicineList.get(2).getQuantity()/medicineList.get(2).getProgress()*100));
             bar3.setTag(medicineList.get(2).getID());
             TextView tv3 = (TextView) layout.findViewById(R.id.bar_3_tv);
             tv3.setText(medicineList.get(2).getName());
         } if (numberOfPills >= 4) {
             ProgressBar bar4 = (ProgressBar) layout.findViewById(R.id.bar_4);
-            bar4.setProgress(medicineList.get(3).getProgress());
+            bar4.setProgress((medicineList.get(3).getQuantity()/medicineList.get(3).getProgress()*100));
             bar4.setTag(medicineList.get(3).getID());
             TextView tv4 = (TextView) layout.findViewById(R.id.bar_4_tv);
             tv4.setText(medicineList.get(3).getName());
         } if (numberOfPills >= 5) {
             ProgressBar bar5 = (ProgressBar) layout.findViewById(R.id.bar_5);
-            bar5.setProgress(medicineList.get(4).getProgress());
+            bar5.setProgress((medicineList.get(4).getQuantity()/medicineList.get(4).getProgress()*100));
             bar5.setTag(medicineList.get(4).getID());
             TextView tv5 = (TextView) layout.findViewById(R.id.bar_5_tv);
             tv5.setText(medicineList.get(4).getName());
         }
-
         return layout;
     }
 

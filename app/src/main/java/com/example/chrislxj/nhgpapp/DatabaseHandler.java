@@ -31,17 +31,23 @@ Primary Key = Time
 Primary Key = Id
 ----------------------------------------
 |ID  |NAME |INSTR |QUANT |TIME |PROGRESS|
----------------------------------------
-|int |text |text  |int   |text |
---------------------------------
-|xxx |xxx  |xxx   |xxx   |xxx  |
---------------------------------
+----------------------------------------
+|int |text |text  |int   |text |int     |
+----------------------------------------
+|xxx |xxx  |xxx   |xxx   |xxx  |xxx     |
+----------------------------------------
 */
 
 /*
 - Accounts Format
 Primary Key = Name
-???
+------------------------------------------------------------------------------------------------------------------------------------------------------
+|ID  |EMAIL_ADDRESS |MAILING_ADDRESS |PATIENT_NAME |PATIENT_CONTACT |CAREGIVER_NAME |CAREGIVER_CONTACT |TARGET_STEPS |TARGET_DISTANCE |TARGET_CALORIES|
+------------------------------------------------------------------------------------------------------------------------------------------------------
+|int |text          |text            |text         |int             |text           |int               |int          |int             |int            |
+------------------------------------------------------------------------------------------------------------------------------------------------------
+|xxx |xxx           |xxx             |xxx          |xxx             |xxx            |xxx               |xxx          |xxx             |xxx            |
+------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 /*
@@ -88,7 +94,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_MEDICINE_PROGRESS = "medicine_progress";
 
     //Account Table Column Names
-    private static final String KEY_ACCOUNT_ID = "account_identification";
+    public static final String KEY_ACCOUNT_ID = "account_identification";
+    public static final String KEY_ACCOUNT_EMAIL = "account_email_address";
+    public static final String KEY_ACCOUNT_MAILING = "account_mailing_address";
+    public static final String KEY_ACCOUNT_PATIENT_CONTACT = "account_patient_contact";
+    public static final String KEY_ACCOUNT_PATIENT_NAME = "account_patient_name";
+    public static final String KEY_ACCOUNT_CAREGIVER_CONTACT = "account_caregiver_contact";
+    public static final String KEY_ACCOUNT_CAREGIVER_NAME = "account_caregiver_name";
+    public static final String KEY_ACCOUNT_TARGET_STEPS = "account_target_steps";
+    public static final String KEY_ACCOUNT_TARGET_DISTANCE = "account_target_distance";
+    public static final String KEY_ACCOUNT_TARGET_CALORIES = "account_target_calories";
 
     //Appointments Table Column Names
     private static final String KEY_APPOINTMENTS_ID = "appointments_identification";
@@ -103,39 +118,49 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_GLUCOSE_TABLE = "CREATE TABLE " + TABLE_GLUCOSE + "("
+        String CREATE_GLUCOSE_TABLE = "CREATE TABLE " + TABLE_GLUCOSE + " ("
                 + KEY_FITNESS_TIME + " INTEGER PRIMARY KEY, "
                 + KEY_FITNESS_VALUE + " INTEGER" + ")";
 
-        String CREATE_PRESSURE_TABLE = "CREATE TABLE " + TABLE_PRESSURE + "("
+        String CREATE_PRESSURE_TABLE = "CREATE TABLE " + TABLE_PRESSURE + " ("
                 + KEY_FITNESS_TIME + " INTEGER PRIMARY KEY, "
                 + KEY_FITNESS_VALUE + " INTEGER" + ")";
 
-        String CREATE_CALORIES_EXPENDED_TABLE = "CREATE TABLE " + TABLE_CALORIES_EXPENDED + "("
+        String CREATE_CALORIES_EXPENDED_TABLE = "CREATE TABLE " + TABLE_CALORIES_EXPENDED + " ("
                 + KEY_FITNESS_TIME + " INTEGER PRIMARY KEY, "
                 + KEY_FITNESS_VALUE + " INTEGER" + ")";
 
-        String CREATE_CALORIES_CONSUMED_TABLE = "CREATE TABLE " + TABLE_CALORIES_CONSUMED + "("
+        String CREATE_CALORIES_CONSUMED_TABLE = "CREATE TABLE " + TABLE_CALORIES_CONSUMED + " ("
                 + KEY_FITNESS_TIME + " INTEGER PRIMARY KEY, "
                 + KEY_FITNESS_VALUE + " INTEGER" + ")";
 
-        String CREATE_STEPS_TABLE = "CREATE TABLE " + TABLE_STEPS + "("
+        String CREATE_STEPS_TABLE = "CREATE TABLE " + TABLE_STEPS + " ("
                 + KEY_FITNESS_TIME + " INTEGER PRIMARY KEY, "
                 + KEY_FITNESS_VALUE + " INTEGER" + ")";
 
-        String CREATE_DISTANCE_TABLE = "CREATE TABLE " + TABLE_DISTANCE + "("
+        String CREATE_DISTANCE_TABLE = "CREATE TABLE " + TABLE_DISTANCE + " ("
                 + KEY_FITNESS_TIME + " INTEGER PRIMARY KEY, "
                 + KEY_FITNESS_VALUE + " INTEGER" + ")";
 
-        String CREATE_MEDICINE_TABLE = "CREATE TABLE " + TABLE_MEDICINE + "("
-                + KEY_MEDICINE_ID + " INTEGER PRIMARY KEY,"
+        String CREATE_MEDICINE_TABLE = "CREATE TABLE " + TABLE_MEDICINE + " ("
+                + KEY_MEDICINE_ID + " INTEGER PRIMARY KEY, "
                 + KEY_MEDICINE_NAME + " TEXT, "
                 + KEY_MEDICINE_INSTR + " TEXT, "
                 + KEY_MEDICINE_QUANT + " INTEGER, "
                 + KEY_MEDICINE_TIMES + " TEXT, "
                 + KEY_MEDICINE_PROGRESS + " INTEGER" + ")";
 
-        String CREATE_ACCOUNT_TABLE = "CREATE TABLE " + TABLE_ACCOUNT + "(" + KEY_ACCOUNT_ID + " INTEGER PRIMARY KEY" + ")";
+        String CREATE_ACCOUNT_TABLE = "CREATE TABLE " + TABLE_ACCOUNT + " ("
+                + KEY_ACCOUNT_ID + " INTEGER PRIMARY KEY, "
+                + KEY_ACCOUNT_EMAIL + " TEXT, "
+                + KEY_ACCOUNT_MAILING + " TEXT, "
+                + KEY_ACCOUNT_PATIENT_CONTACT + " INTEGER, "
+                + KEY_ACCOUNT_PATIENT_NAME + " TEXT, "
+                + KEY_ACCOUNT_CAREGIVER_CONTACT + " INTEGER, "
+                + KEY_ACCOUNT_CAREGIVER_NAME + " TEXT, "
+                + KEY_ACCOUNT_TARGET_STEPS + " INTEGER, "
+                + KEY_ACCOUNT_TARGET_DISTANCE + " INTEGER, "
+                + KEY_ACCOUNT_TARGET_CALORIES + " INTEGER"+ ")";
 
         String CREATE_PAST_APPOINTMENTS_TABLE = "CREATE TABLE " + TABLE_PAST_APPOINTMENTS + "("
                 + KEY_APPOINTMENTS_ID + " INTEGER PRIMARY KEY, "
@@ -160,9 +185,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_PAST_APPOINTMENTS_TABLE);
         db.execSQL(CREATE_CURRENT_APPOINTMENTS_TABLE);
 
-        //TODO: Delete outdated fitness records (older than 1 month)
-        //TODO: Delete outdated medicine records (quantity is zero)
-
     }
 
     // Count Tables
@@ -178,6 +200,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Create A Fitness
     public void addFitness(String table, ObjectFitness fitnessObject) {
         SQLiteDatabase db = this.getWritableDatabase();
+        String monthAgo = String.valueOf(System.currentTimeMillis() - 2892720600L);
+        String sql = "DELETE FROM "+table+" WHERE fitness_time <= "+monthAgo;
+        db.execSQL(sql);
         ContentValues values = new ContentValues();
         values.put(KEY_FITNESS_TIME, fitnessObject.getDatabaseTime());
         values.put(KEY_FITNESS_VALUE, fitnessObject.getValue());
@@ -189,9 +214,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(table, new String[]
                         {KEY_FITNESS_TIME,
-                        KEY_FITNESS_VALUE},
-                        KEY_FITNESS_TIME + " = ?",
-                        new String[] { String.valueOf(time.getTime()) }, null, null, null, null);
+                                KEY_FITNESS_VALUE},
+                KEY_FITNESS_TIME + " = ?",
+                new String[]{String.valueOf(time.getTime())}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         ObjectFitness fitnessObject = new ObjectFitness();
@@ -219,6 +244,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addMedicine(ObjectMedicine medicineObject) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        if (medicineObject.getQuantity()==0){
+            return;
+        }
         values.put(KEY_MEDICINE_ID, medicineObject.getID());
         values.put(KEY_MEDICINE_NAME, medicineObject.getName());
         values.put(KEY_MEDICINE_INSTR, medicineObject.getInstruction());
@@ -228,18 +256,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_MEDICINE, null, values);
         db.close();
     }
+
     // Read A Medicine
     public ObjectMedicine getMedicine(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_MEDICINE, new String[]
                         {KEY_MEDICINE_ID,
-                        KEY_MEDICINE_NAME,
-                        KEY_MEDICINE_INSTR,
-                        KEY_MEDICINE_QUANT,
-                        KEY_MEDICINE_TIMES,
-                        KEY_MEDICINE_PROGRESS},
-                        KEY_MEDICINE_ID + " = ?",
-                        new String[] { String.valueOf(id) }, null, null, null, null);
+                                KEY_MEDICINE_NAME,
+                                KEY_MEDICINE_INSTR,
+                                KEY_MEDICINE_QUANT,
+                                KEY_MEDICINE_TIMES,
+                                KEY_MEDICINE_PROGRESS},
+                KEY_MEDICINE_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         ObjectMedicine medicineObject = new ObjectMedicine();
@@ -255,6 +284,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void updateMedicine(ObjectMedicine medicineObject) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        if (medicineObject.getQuantity()==0){
+            deleteMedicine(medicineObject.getID());
+            return;
+        }
         values.put(KEY_MEDICINE_ID, medicineObject.getID());
         values.put(KEY_MEDICINE_NAME, medicineObject.getName());
         values.put(KEY_MEDICINE_INSTR, medicineObject.getInstruction());
@@ -264,14 +297,59 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(TABLE_MEDICINE, values, KEY_MEDICINE_ID + " = ?", new String[]{String.valueOf(medicineObject.getID())});
     }
     // Delete A Medicine
-    public void deleteMedicine(int id) {
+    public void deleteAccount(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_MEDICINE, KEY_MEDICINE_ID + " = ?", new String[]{String.valueOf(id)});
+        db.delete(TABLE_ACCOUNT, KEY_MEDICINE_ID + " = ?", new String[]{String.valueOf(id)});
         db.close();
     }
 
     //---------- ACCOUNT CRUD FUNCTIONS----------//
-    //TODO: Add account table and crud
+    // Create Account
+    public void addAccount(int id, String email, String mailing, int contact1, String name1, int contact2, String name2, int steps, int distance, int calories) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_ACCOUNT_ID, id);
+        values.put(KEY_ACCOUNT_EMAIL, email);
+        values.put(KEY_ACCOUNT_MAILING, mailing);
+        values.put(KEY_ACCOUNT_PATIENT_CONTACT, contact1);
+        values.put(KEY_ACCOUNT_PATIENT_NAME, name1);
+        values.put(KEY_ACCOUNT_CAREGIVER_CONTACT, contact2);
+        values.put(KEY_ACCOUNT_CAREGIVER_NAME, name2);
+        values.put(KEY_ACCOUNT_TARGET_STEPS, steps);
+        values.put(KEY_ACCOUNT_TARGET_DISTANCE, distance);
+        values.put(KEY_ACCOUNT_TARGET_CALORIES, calories);
+        db.insert(TABLE_ACCOUNT, null, values);
+        db.close();
+    }
+    // Read Account
+    public String getAccount(String detail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor dbCursor = db.query(TABLE_ACCOUNT, null, null, null, null, null, null);
+        String[] columnNames = dbCursor.getColumnNames();
+        for (int x=0;x<columnNames.length;x++){
+            Log.d("debug",columnNames[x]);
+        }
+
+        Cursor cursor = db.query(TABLE_ACCOUNT, new String[]{detail,}, null, null, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        Log.d("debug","Returning string");
+        return cursor.getString(0);
+    }
+    // Update Account
+    public void updateMedicine(String detail, String value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(detail, value);
+        db.update(TABLE_ACCOUNT, values, KEY_ACCOUNT_PATIENT_CONTACT + " = ?", new String[]{});
+    }
+    // Delete Account
+    public void deleteMedicine(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ACCOUNT, KEY_ACCOUNT_ID + " = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
 
 
     //----------APPOINTMENTS CRUD FUNCTIONS----------//
